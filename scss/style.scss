@@ -122,6 +122,19 @@ body {
     /* .hero__logo */
 
     &__logo {
+        animation: logo 2s ease-in-out 0s normal none running;
+
+        @keyframes logo {
+            0% {
+                opacity: 0;
+                transform: translateX(-500px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
     }
 
     /* .hero__title */
@@ -129,9 +142,13 @@ body {
     &__title {
         max-width: toRem(633);
         width: 100%;
+    }
 
-        span {
-            color: #377DE5;
+    /* .hero__span */
+
+    &__span {
+        &--blue {
+        color: #377DE5;
         }
     }
 
@@ -139,6 +156,19 @@ body {
 
     &__image {
         height: 100vh;
+        animation: hero 2s ease-in-out 0s normal none running;
+
+        @keyframes hero {
+            0% {
+                opacity: 0;
+                transform: translateY(-100%);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
         @media (max-width: 823.98px) {
             height: auto;

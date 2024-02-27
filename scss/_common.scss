@@ -114,4 +114,49 @@
         background: rgb(10,36,75);
         background: linear-gradient(45deg, rgba(10,36,75,1) 0%, rgba(3,50,105,1) 18%, rgb(10, 15, 24) 100%);
     }
+
+    &--anim {
+        transform: translateY(100px);
+        opacity: 0;
+        visibility: hidden;
+    
+        &.show {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+            transition: all 1s ease 0s;
+        }
+    }
+}
+
+.anim-left {
+    transform: translateX(-100px);
+    opacity: 0;
+    visibility: hidden;
+
+    &--anim-delay {
+        &.show-left {
+            transition: all 1.5s ease 0.5s;
+        }
+    }
+
+    &.show-left {
+        transition: all 1s ease 0s;
+        transform: translateX(0);
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+.anim-right {
+    transform: translateX(100px);
+    opacity: 0;
+    visibility: hidden;
+
+    &.show-right {
+        transition: all 1s ease 0s;
+        transform: translateX(0);
+        opacity: 1;
+        visibility: visible;
+    }
 }
