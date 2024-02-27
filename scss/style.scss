@@ -1,0 +1,669 @@
+@use "sass:math";
+
+// Мінімальна ширина сторінки
+$minWidth: 320;
+// Ширина полотна (макету)
+$maxWidth: 1980;
+// Ширина обмежуючого контейнера (0 = немає обмеження)
+$maxWidthContainer: 1840;
+// Загальний відступ у контейнера
+// (30 = по 15px ліворуч і праворуч, 0 = немає відступу)
+$containerPadding: 30;
+// Ширина спрацьовування першого брейкпоінту
+$containerWidth: $maxWidthContainer + $containerPadding;
+
+// Кольори
+
+
+// Функції
+@import "_functions.scss";
+
+// Шрифти
+@import url('https://fonts.googleapis.com/css2?family=Onest&display=swap');
+// @import "_fonts.scss";
+
+// Іконки
+// @import "_icons.scss";
+
+// Обнулення
+@import "_reset.scss";
+
+// Компоненти
+@import "_common.scss";
+// @import "_header.scss";
+// @import "_footer.scss";
+// @import "_filter.scss";
+// @import "_nouislider.scss";
+
+body {
+    color: #ffffff;
+	background-color: #12161C;
+	&.menu-open {
+		overflow: hidden;
+		touch-action: none;
+		overscroll-behavior: none;
+	}
+}
+
+.onest-reg {
+    font-family: "Onest", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+    @include adaptiveValue("font-size", 30, 20, 0, 1920, 360);
+}
+
+.wrapper {
+	overflow: clip;
+	display: flex;
+	flex-direction: column;
+	min-height: 100%;
+    @include adaptiveValue("padding-top", 40, 10, 0, 1920, 360);
+    @include adaptiveValue("padding-bottom", 40, 10, 0, 1920, 360);
+}
+
+.page {
+	flex-grow: 1;
+    display: grid;
+    @include adaptiveValue("gap", 40, 20, 0, 1920, 360);
+}
+
+[class*="__container"] {
+	max-width: toRem(1870);
+	margin: 0 auto;
+    @include adaptiveValue("padding-left", 15, 10, 0, 1920, 360);
+    @include adaptiveValue("padding-right", 15, 10, 0, 1920, 360);
+}
+
+
+// --------- Hero --------
+
+.hero {
+
+    /* .hero__container */
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+        @include adaptiveValue("gap", 40, 20, 0, 1920, 360);
+    }
+
+    /* .hero__body */
+
+    &__body {
+        display: flex;
+
+        @media (max-width: 823.98px) {
+            flex-direction: column-reverse;
+            width: 100%;
+        }
+    }
+
+    /* .hero__content */
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        @include adaptiveValue("padding", 60, 20, 0, 1920, 360);
+        flex: 0 1 toRem(900);
+        min-width: toRem(500);
+        background: rgb(25,34,48);
+        background: linear-gradient(45deg, rgba(25,34,48,1) 0%, rgba(20,55,98,1) 25%, rgba(15,71,139,1) 50%, rgba(20,55,98,1) 75%, rgba(25,34,48,1) 100%);
+
+        @media (max-width: 823.98px) {
+            flex: 1 1 100%;
+            @include adaptiveValue("gap", 75, 50, 0, 824, 360);
+            min-width: 0;
+        }
+    }
+
+    /* .hero__logo */
+
+    &__logo {
+    }
+
+    /* .hero__title */
+
+    &__title {
+        max-width: toRem(633);
+        width: 100%;
+
+        span {
+            color: #377DE5;
+        }
+    }
+
+    /* .hero__image */
+
+    &__image {
+        height: 100vh;
+
+        @media (max-width: 823.98px) {
+            height: auto;
+        }
+    }
+
+    /* .hero__description */
+
+    &__description {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        @include adaptiveValue("gap", 40, 20, 0, 1920, 320);
+
+        @media (max-width: 823.98px) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    /* .hero__text */
+
+    &__text {
+        @include adaptiveValue("padding", 50, 20, 0, 1920, 320);
+        @include adaptiveValue("padding-bottom", 90, 40, 0, 1920, 320);
+        background: rgb(25,34,48);
+        background: linear-gradient(45deg, rgba(25,34,48,1) 0%, rgba(20,55,98,1) 25%, rgba(15,71,139,1) 50%, rgba(20,55,98,1) 75%, rgba(25,34,48,1) 100%);
+    }
+}
+
+// --------- About --------
+
+.about {
+
+    /* .about__container */
+
+    &__container {
+    }
+
+    /* .about__content */
+
+    &__content {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        @include adaptiveValue("gap", 40, 20, 0, 1920, 320);
+
+        @media (max-width: 823.98px) {
+            grid-template-columns: repeat(1, 1fr);
+        }
+    }
+
+    /* .about__block */
+
+    &__block {
+        @include adaptiveValue("padding", 50, 20, 0, 1920, 320);
+        background: rgb(18,22,28);
+        background: linear-gradient(45deg, rgba(18,22,28,1) 0%, rgb(103, 5, 8) 25%, rgba(25,34,48,1) 100%);
+
+        &:nth-child(odd):last-child {
+            grid-column: span 2;
+
+            @media (max-width: 823.98px) {
+                grid-column: span 1;
+            }
+        }
+    }
+
+    /* .about__title */
+
+    &__title {
+    }
+
+    /* .about__text */
+
+    &__text {
+    }
+}
+
+// --------- Career --------
+
+.career {
+
+    /* .career__container */
+
+    &__container {
+    }
+
+    /* .career__body */
+
+    &__body {
+    }
+
+    /* .career__image */
+
+    &__image {
+    }
+
+    /* .career__content */
+
+    &__content {
+    }
+
+    /* .career__title */
+
+    &__title {
+        @include adaptiveValue("padding-left", 40, 20, 0, 1920, 420);
+    }
+
+    /* .career__block */
+
+    &__block {
+    }
+
+    /* .career__title-block */
+
+    &__title-block {
+    }
+
+    /* .career__text */
+
+    &__text {
+    }
+}
+
+// --------- Why --------
+
+.why {
+
+    /* .why__container */
+
+    &__container {
+    }
+
+    /* .why__body */
+
+    &__body {
+        @include adaptiveValue("padding-top", 40, 15, 0, 1920, 420);
+        @include adaptiveValue("padding-bottom", 40, 10, 0, 1920, 420);
+        @include adaptiveValue("padding-left", 40, 00, 0, 1920, 320);
+        @include adaptiveValue("padding-right", 40, 00, 0, 1920, 320);
+        background: rgb(25,34,48);
+        background: linear-gradient(90deg, rgba(25,34,48,1) 0%, rgba(103,5,8,1) 50%, rgba(25,34,48,1) 100%);
+    }
+
+    /* .why__title */
+
+    &__title {
+        @include adaptiveValue("padding-left", 40, 20, 0, 1920, 420);
+        @include adaptiveValue("margin-bottom", 70, 20, 0, 1920, 420);
+    }
+
+    /* .why__content */
+
+    &__content {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        @include adaptiveValue("gap", 40, 20, 0, 1920, 320);
+
+        @media (max-width: 823.98px) {
+            grid-template-columns: repeat(1, 1fr);
+        }
+    }
+
+    /* .why__block */
+
+    &__block {
+        @include adaptiveValue("padding", 50, 20, 0, 1920, 320);
+        background: rgb(18,22,28);
+        background: linear-gradient(45deg, rgba(18,22,28,1) 0%, rgb(103, 5, 8) 25%, rgb(8, 10, 14) 100%);
+
+        &:nth-child(odd):last-child {
+            grid-column: span 2;
+
+            @media (max-width: 823.98px) {
+                grid-column: span 1;
+            }
+        }
+    }
+
+    /* .why__text */
+
+    &__text {
+    }
+}
+
+// --------- Benefits --------
+
+.benefits {
+
+    /* .benefits__container */
+
+    &__container {
+    }
+
+    /* .benefits__body */
+
+    &__body {
+
+        @media (max-width: 823.98px) {
+            flex-direction: column-reverse;
+        }
+    }
+
+    /* .benefits__content */
+
+    &__content {
+    }
+
+    /* .benefits__title */
+
+    &__title {
+        @include adaptiveValue("padding-left", 40, 20, 0, 1920, 320);
+    }
+
+    /* .benefits__block */
+
+    &__block {
+    }
+
+    /* .benefits__title-block */
+
+    &__title-block {
+    }
+
+    /* .benefits__text */
+
+    &__text {
+    }
+
+    /* .benefits__image */
+
+    &__image {
+    }
+}
+
+
+// --------- Process --------
+
+.process {
+
+    /* .process__container */
+
+    &__container {
+    }
+
+    /* .process__body */
+
+    &__body {
+        @include adaptiveValue("padding-top", 40, 15, 0, 1920, 420);
+        @include adaptiveValue("padding-bottom", 40, 10, 0, 1920, 420);
+        @include adaptiveValue("padding-left", 40, 00, 0, 1920, 320);
+        @include adaptiveValue("padding-right", 40, 00, 0, 1920, 320);
+        background: rgb(25,34,48);
+        background: linear-gradient(90deg, rgba(25,34,48,1) 0%, rgba(103,5,8,1) 50%, rgba(25,34,48,1) 100%);
+    }
+
+    /* .process__title */
+
+    &__title {
+        @include adaptiveValue("padding-left", 40, 20, 0, 1920, 420);
+        @include adaptiveValue("margin-bottom", 70, 20, 0, 1920, 420);
+    }
+
+    /* .process__content */
+
+    &__content {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        @include adaptiveValue("gap", 40, 20, 0, 1920, 320);
+
+        @media (max-width: 823.98px) {
+            grid-template-columns: repeat(1, 1fr);
+        }
+    }
+
+    /* .process__block */
+
+    &__block {
+        @include adaptiveValue("padding", 50, 20, 0, 1920, 320);
+        background: rgb(18,22,28);
+        background: linear-gradient(45deg, rgba(18,22,28,1) 0%, rgb(103, 5, 8) 25%, rgb(8, 10, 14) 100%);
+
+        &:nth-child(odd):last-child {
+            grid-column: span 2;
+
+            @media (max-width: 823.98px) {
+                grid-column: span 1;
+            }
+        }
+    }
+
+    /* .process__title-block */
+
+    &__title-block {
+    }
+
+    /* .process__text */
+
+    &__text {
+    }
+
+    /* .process__link */
+
+    &__link {
+        color: #FF4A4A;
+
+        @media (any-hover: hover) {
+            &:hover {
+                color: #377DE5;
+            }
+            
+        }
+    }
+}
+
+
+//  --------- Contact Us  --------
+
+.contact {
+
+    /* .contact__container */
+
+    &__container {
+    }
+
+    /* .contact__body */
+
+    &__body {
+        display: flex;
+
+        @media (max-width: 823.98px) {
+            flex-direction: column;
+        }
+    }
+
+    /* .contact__image */
+
+    &__image {
+        max-width: toRem(940);
+        width: 100%;
+        height: auto;
+        overflow: hidden;
+        flex: 0 1 toRem(940);
+
+        @media (max-width: 823.98px) {
+            flex: 1 1 100%;
+            height: auto;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+
+            @media (max-width: 823.98px) {
+                aspect-ratio: 34 / 28;
+            }
+        }
+    }
+
+    /* .contact__content */
+
+    &__content {
+        flex: 0 1 toRem(900);
+
+        @media (max-width: 823.98px) {
+            flex: 1 1 100%;
+        }
+    }
+
+    /* .contact__title */
+
+    &__title {
+        @include adaptiveValue("padding-left", 40, 20, 0, 1920, 320);
+        margin-bottom: toRem(10);
+    }
+
+    /* .contact__block */
+
+    &__block {
+        display: grid;
+        @include adaptiveValue("gap", 40, 20, 0, 1920, 320);
+        @include adaptiveValue("padding", 50, 20, 0, 1920, 320);
+        background: rgb(10,36,75);
+        background: linear-gradient(45deg, rgba(10,36,75,1) 0%, rgba(3,50,105,1) 18%, rgb(10, 15, 24) 100%);
+    }
+
+    /* .contact__item */
+
+    &__item {
+    }
+
+    /* .contact__text */
+
+    &__text {
+    }
+
+    /* .contact__link */
+
+    &__link {
+        transition: all 0.3s ease 0s;
+
+        @media (any-hover: hover) {
+            &:hover {
+                color: #FF4A4A;
+            }
+            
+        }
+    }
+}
+
+//  --------- Join Us  --------
+
+.join {
+
+    /* .join__container */
+
+    &__container {
+    }
+
+    /* .join__body */
+
+    &__body {
+        background: rgb(18,22,28);
+        background: linear-gradient(45deg, rgba(18,22,28,1) 0%, rgb(30, 43, 63) 100%);
+        display: grid;
+        @include adaptiveValue("padding-top", 40, 15, 0, 1920, 420);
+        @include adaptiveValue("padding-bottom", 40, 10, 0, 1920, 420);
+        @include adaptiveValue("padding-left", 40, 00, 0, 1920, 320);
+        @include adaptiveValue("padding-right", 40, 00, 0, 1920, 320);
+        @include adaptiveValue("gap", 40, 20, 0, 1920, 320);
+    }
+
+    /* .join__title */
+
+    &__title {
+        @include adaptiveValue("padding-left", 40, 20, 0, 1920, 320);
+    }
+
+    /* .join__form */
+
+    &__form {
+    }
+}
+
+.form {
+    display: grid;
+    grid-template-columns: 1fr;
+    @include adaptiveValue("row-gap", 40, 20, 0, 1920, 360);
+
+    /* .form__block */
+
+    &__block {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        @include adaptiveValue("gap", 40, 20, 0, 1920, 360);
+
+        @media (max-width: 991.98px) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    /* .form__item */
+
+    &__item {
+        display: grid;
+        gap: toRem(10);
+        background: rgb(37,56,84);
+        background: linear-gradient(45deg, rgba(37,56,84,1) 0%, rgba(11,69,139,1) 17%, rgba(8,12,19,1) 51%);
+        @include adaptiveValue("padding", 60, 20, 0, 1920, 360);
+
+        input {
+            padding: toRem(5) toRem(15);
+        }
+    }
+
+    /* .form__message */
+
+    &__message {
+        display: grid;
+        resize: none;
+        grid-column: span 3;
+        gap: toRem(10);
+        background: rgb(37,56,84);
+        background: linear-gradient(45deg, rgba(37,56,84,1) 0%, rgba(11,69,139,1) 17%, rgba(8,12,19,1) 51%);
+        @include adaptiveValue("padding", 60, 20, 0, 1920, 360);
+    }
+
+    /* .form__button */
+
+    &__button {
+        background: rgb(37,56,84);
+        background: linear-gradient(45deg, rgba(37,56,84,1) 0%, rgba(11,69,139,1) 17%, rgba(8,12,19,1) 51%);
+        width: 100%;
+        @include adaptiveValue("padding-top", 60, 24, 0, 1920, 360);
+        @include adaptiveValue("padding-bottom", 60, 24, 0, 1920, 360);
+        text-align: center;
+    }
+}
+
+//  --------- Footer  --------
+
+.footer {
+
+    /* .footer__container */
+
+    &__container {
+        @include adaptiveValue("padding-top", 150, 30, 0, 1920, 360);
+        @include adaptiveValue("padding-bottom", 220, 50, 0, 1920, 360);
+    }
+
+    /* .footer__body */
+
+    &__body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        @include adaptiveValue("gap", 40, 20, 0, 1920, 360);
+
+        @media (max-width: 457.98px) {
+            flex-direction: column;
+        }
+    }
+
+    /* .footer__link */
+
+    &__link {
+    }
+}

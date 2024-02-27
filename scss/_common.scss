@@ -1,0 +1,117 @@
+.title {
+    @include adaptiveValue("font-size", 79, 36, 0, 1920, 360);
+    line-height: 1.1;
+
+    &--red {
+        color: #FF4A4A;
+        margin-bottom: toRem(20);
+    }
+
+    &--blue {
+        color: #377DE5;
+        margin-bottom: toRem(20);
+    }
+}
+
+.text {
+    line-height: 1.4;
+}
+
+.image {
+    position: relative;
+    max-width: toRem(940);
+    width: 100%;
+    overflow: hidden;
+    flex: 0 1 toRem(940);
+    z-index: 1;
+
+    @media (max-width: 823.98px) {
+        flex: 1 1 100%;
+        height: auto;
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top center;
+
+        @media (max-width: 823.98px) {
+            aspect-ratio: 940 / 800;
+        }
+    }
+
+    &--decor-right,
+    &--decor-left {
+        
+        &::before  {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            width: toRem(0);
+            height: toRem(0);
+            border-style: solid;
+            @include adaptiveValue("border-width", 150, 35, 0, 1920, 360);
+            z-index: 3;
+        }
+    }
+
+
+    &--decor-right {
+        &::before  {
+            right: 0;
+            border-color: transparent #12161C #12161C transparent;
+    
+            @media (max-width: 823.98px) {
+                top: 0;
+                transform: rotate(-90deg);
+            }
+        }   
+    }
+
+    &--decor-left {
+        &::before  {
+            left: 0;
+            border-color: transparent transparent #12161C #12161C;
+
+            @media (max-width: 823.98px) {
+                top: 0;
+                transform: rotate(90deg);
+            }
+        }
+    }
+}
+
+.content {
+    display: grid;
+    @include adaptiveValue("padding-top", 40, 15, 0, 1920, 420);
+    @include adaptiveValue("padding-bottom", 40, 10, 0, 1920, 420);
+    @include adaptiveValue("padding-left", 40, 00, 0, 1920, 320);
+    @include adaptiveValue("padding-right", 40, 00, 0, 1920, 320);
+    @include adaptiveValue("gap", 40, 20, 0, 1920, 320);
+
+    &--blue {
+        background: rgb(10,36,75);
+        background: linear-gradient(45deg, rgba(10,36,75,1) 0%, rgba(3,50,105,1) 18%, rgba(25,34,48,1) 100%);
+    }
+}
+
+.body {
+
+    &--blue {
+        display: flex;
+
+        @media (max-width: 823.98px) {
+            flex-direction: column;
+        }
+    }
+}
+
+.block {
+
+    &--blue {
+        @include adaptiveValue("padding", 50, 20, 0, 1920, 320);
+        background: rgb(10,36,75);
+        background: linear-gradient(45deg, rgba(10,36,75,1) 0%, rgba(3,50,105,1) 18%, rgb(10, 15, 24) 100%);
+    }
+}
