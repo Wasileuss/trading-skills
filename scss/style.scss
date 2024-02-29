@@ -93,6 +93,7 @@ body {
 
     &__body {
         display: flex;
+        overflow: hidden;
 
         @media (max-width: 823.98px) {
             flex-direction: column-reverse;
@@ -122,17 +123,23 @@ body {
     /* .hero__logo */
 
     &__logo {
-        animation: logo 2s ease-in-out 0s normal none running;
 
-        @keyframes logo {
-            0% {
-                opacity: 0;
-                transform: translateX(-500px);
-            }
+        img {
+            animation: logo 2s ease-in-out 0s normal none running;
+    
+            @keyframes logo {
+                0% {
+                    transform: translateX(-500px);
+                }
 
-            100% {
-                opacity: 1;
-                transform: translateX(0);
+                75% {
+                    opacity: 0;
+                }
+    
+                100% {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
             }
         }
     }
@@ -171,22 +178,25 @@ body {
 
     &__image {
         height: 100vh;
-        animation: hero 2s ease-in-out 0s normal none running;
+        
+        img {
+            animation: hero 2s ease-in-out 0s normal none running;
 
-        @keyframes hero {
-            0% {
-                opacity: 0;
-                transform: translateY(-100%);
+            @keyframes hero {
+                0% {
+                    opacity: 0;
+                    transform: translateX(100%);
+                }
+
+                100% {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
             }
 
-            100% {
-                opacity: 1;
-                transform: translateY(0);
+            @media (max-width: 823.98px) {
+                height: auto;
             }
-        }
-
-        @media (max-width: 823.98px) {
-            height: auto;
         }
     }
 
