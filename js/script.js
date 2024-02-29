@@ -62,6 +62,47 @@ someElements.forEach(someElement => {
 //         const delayIncrement = dataChar[0] || 1000;
 //         const delay = delayIncrement + i * (dataChar[1] || 50);
 
+//         span.style.transitionProperty = "opacity";
+//         span.style.transitionDuration = "200ms";
+//         span.style.transitionTimingFunction = "ease-in-out";
+//         span.style.opacity = "0";
+//         span.style.transitionDelay = `${delay}ms`;
+
+//         setTimeout(() => {
+//             span.style.opacity = "1";
+//             span.style.transform = "translateX(100px)";
+//         }, delay);
+//     }
+// }
+  
+// document.querySelectorAll("[data-char]").forEach(processTextBlock);
+
+//  -------------------  Text Animation 2-------------------
+
+// function processTextBlock(textBlock) {
+//     const dataChar = textBlock.dataset.char.split(',').map(Number);
+//     const content = textBlock.textContent;
+//     textBlock.innerHTML = '';
+  
+//     content.split('').forEach((char, i) => {
+//         const span = document.createElement("span");
+//         span.textContent = char;
+    
+//         if (char === ' ') {
+//             const space = document.createTextNode(' ');
+//             textBlock.appendChild(space);
+//         } else {
+//             textBlock.appendChild(span);
+//             applyAnimation(span, dataChar, i);
+//         }
+//     });
+// }
+  
+// function applyAnimation(span, dataChar, i) {
+//     if (dataChar.length > 0) {
+//         const delayIncrement = dataChar[0] || 1000;
+//         const delay = delayIncrement + i * (dataChar[1] || 50);
+
 //         span.style.opacity = "0";
 //         span.style.transform = "scale(0)";
 //         span.style.transformOrigin = "top";
