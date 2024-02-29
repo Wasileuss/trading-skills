@@ -1995,3 +1995,12 @@ body.menu-open {
             flex-direction: column;
   }
 }
+.footer__link {
+  -webkit-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+}
+@media (any-hover: hover) {
+  .footer__link:hover {
+    color: #FF4A4A;
+  }
+}
