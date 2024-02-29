@@ -36,6 +36,8 @@ someElements.forEach(someElement => {
 	observer.observe(someElement);
 });
 
+//  -------------------  Text Animation -------------------
+
 function processTextBlock(textBlock) {
     const dataChar = textBlock.dataset.char.split(',').map(Number);
     const content = textBlock.textContent;
@@ -60,15 +62,15 @@ function applyAnimation(span, dataChar, i) {
         const delayIncrement = dataChar[0] || 1000;
         const delay = delayIncrement + i * (dataChar[1] || 50);
 
-        span.style.transitionProperty = "opacity";
-        span.style.transitionDuration = "200ms";
-        span.style.transitionTimingFunction = "ease-in-out";
         span.style.opacity = "0";
-        span.style.transitionDelay = `${delay}ms`;
+        span.style.transform = "scale(0)";
+        span.style.transformOrigin = "top";
+        span.style.transition = `opacity 500ms ease-in-out ${delay}ms`;
 
         setTimeout(() => {
             span.style.opacity = "1";
-            span.style.transform = "translateX(100px)";
+            span.style.transform = "scale(1)";
+            span.style.transition = `transform 300ms ease-in-out 0ms`;
         }, delay);
     }
 }

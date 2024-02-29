@@ -744,11 +744,18 @@ body.menu-open {
   }
 }
 .hero__title {
+  position: relative;
   max-width: 39.5625rem;
   width: 100%;
 }
+.hero__span span {
+  display: inline-block;
+}
 .hero__span--blue {
   color: #377DE5;
+}
+.hero__span--blue span {
+  display: inline-block;
 }
 .hero__image {
   height: 100vh;

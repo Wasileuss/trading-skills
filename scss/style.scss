@@ -140,15 +140,30 @@ body {
     /* .hero__title */
 
     &__title {
+        position: relative;
         max-width: toRem(633);
         width: 100%;
     }
 
     /* .hero__span */
 
+    // #typing-text {
+    //     opacity: 0;
+    //     transform: translateY(-100px);
+    // }
+
     &__span {
+
+        span {
+            display: inline-block;
+        }
+
         &--blue {
-        color: #377DE5;
+            color: #377DE5;
+
+            span {
+                display: inline-block;
+            }
         }
     }
 
