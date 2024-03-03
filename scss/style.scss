@@ -19,8 +19,8 @@ $containerWidth: $maxWidthContainer + $containerPadding;
 @import "_functions.scss";
 
 // Шрифти
-@import url('https://fonts.googleapis.com/css2?family=Onest&display=swap');
-// @import "_fonts.scss";
+// @import url('https://fonts.googleapis.com/css2?family=Onest&display=swap');
+@import "_fonts.scss";
 
 // Іконки
 // @import "_icons.scss";
@@ -32,26 +32,22 @@ $containerWidth: $maxWidthContainer + $containerPadding;
 @import "_common.scss";
 // @import "_header.scss";
 // @import "_footer.scss";
-// @import "_filter.scss";
-// @import "_nouislider.scss";
+
+html {  
+    scroll-behavior: smooth;
+}
 
 body {
     color: #ffffff;
 	background-color: #12161C;
+    font-family: "Onest", sans-serif;
+    @include adaptiveValue("font-size", 30, 20, 0, 1920, 360);
+
 	&.menu-open {
 		overflow: hidden;
 		touch-action: none;
 		overscroll-behavior: none;
 	}
-}
-
-.onest-reg {
-    font-family: "Onest", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-    @include adaptiveValue("font-size", 30, 20, 0, 1920, 360);
 }
 
 .wrapper {
@@ -93,6 +89,7 @@ body {
 
     &__body {
         display: flex;
+        overflow: hidden;
 
         @media (max-width: 823.98px) {
             flex-direction: column-reverse;
@@ -106,15 +103,16 @@ body {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        @include adaptiveValue("padding", 60, 20, 0, 1920, 360);
+        @include adaptiveValue("padding", 60, 30, 0, 1920, 823.98);
         flex: 0 1 toRem(900);
         min-width: toRem(500);
         background: rgb(25,34,48);
         background: linear-gradient(45deg, rgba(25,34,48,1) 0%, rgba(20,55,98,1) 25%, rgba(15,71,139,1) 50%, rgba(20,55,98,1) 75%, rgba(25,34,48,1) 100%);
 
         @media (max-width: 823.98px) {
+            padding: toRem(30) toRem(15);
             flex: 1 1 100%;
-            @include adaptiveValue("gap", 75, 50, 0, 824, 360);
+            @include adaptiveValue("gap", 150, 100, 0, 824, 360);
             min-width: 0;
         }
     }
@@ -122,16 +120,47 @@ body {
     /* .hero__logo */
 
     &__logo {
+        animation: logo 2s ease-in-out 0s normal forwards running;
+
+        @keyframes logo {
+            0% {
+                transform: translateX(-500px);
+            }
+
+            75% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
     }
 
     /* .hero__title */
 
     &__title {
+        position: relative;
         max-width: toRem(633);
         width: 100%;
+    }
+
+    /* .hero__span */
+
+    &__span {
+        @include adaptiveValue("max-width", 590, 370, 2, 1920, 823.98);
 
         span {
+            display: inline-block;
+        }
+
+        &--blue {
             color: #377DE5;
+
+            span {
+                display: inline-block;
+            }
         }
     }
 
@@ -139,9 +168,29 @@ body {
 
     &__image {
         height: 100vh;
+        
+        img {
+            animation: hero 2s ease-in-out 0s normal none running;
 
-        @media (max-width: 823.98px) {
-            height: auto;
+            @keyframes hero {
+                0% {
+                    opacity: 0;
+                    transform: scale(1.5);
+                }
+
+                50% {
+                    opacity: 0.25;
+                }
+
+                100% {
+                    opacity: 1;
+                    transform: scale(1);
+                }
+            }
+
+            @media (max-width: 823.98px) {
+                height: auto;
+            }
         }
     }
 
@@ -164,6 +213,44 @@ body {
         @include adaptiveValue("padding-bottom", 90, 40, 0, 1920, 320);
         background: rgb(25,34,48);
         background: linear-gradient(45deg, rgba(25,34,48,1) 0%, rgba(20,55,98,1) 25%, rgba(15,71,139,1) 50%, rgba(20,55,98,1) 75%, rgba(25,34,48,1) 100%);
+    }
+}
+
+.logo {
+    display: flex;
+
+    &__part-2 {
+        color: #377DE5;
+    }
+
+    &__span-1 {
+        display: inline-block;
+        animation: span-1 .8s ease-in-out 1.5s normal forwards running;
+
+        @keyframes span-1 {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(-5px);
+            }
+        }
+    }
+
+    &__span-2 {
+        display: inline-block;
+        animation: span-2 .8s ease-in-out 2s normal forwards running;
+
+        @keyframes span-2 {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(-10px);
+            }
+        }
     }
 }
 
@@ -618,12 +705,15 @@ body {
 
     &__message {
         display: grid;
-        resize: none;
         grid-column: span 3;
         gap: toRem(10);
         background: rgb(37,56,84);
         background: linear-gradient(45deg, rgba(37,56,84,1) 0%, rgba(11,69,139,1) 17%, rgba(8,12,19,1) 51%);
         @include adaptiveValue("padding", 60, 20, 0, 1920, 360);
+
+        textarea {
+            resize: none;
+        }
     }
 
     /* .form__button */
@@ -665,5 +755,13 @@ body {
     /* .footer__link */
 
     &__link {
+        transition: all 0.3s ease 0s;
+
+        @media (any-hover: hover) {
+            &:hover {
+                color: #FF4A4A;
+            }
+            
+        }
     }
 }
