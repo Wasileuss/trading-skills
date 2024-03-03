@@ -1,8 +1,5 @@
 "use strict"
 
-//Intersection Observer API
-//https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
-
 let options = {
 	root: null,
 	rootMargin: "0px 0px 0px 0px",
@@ -26,11 +23,6 @@ let callback = (entries, observer) => {
 
 let observer = new IntersectionObserver(callback, options);
 
-/*
-const target = document.querySelector(".class-name");
-observer.observe(target);
-*/
-
 let someElements = document.querySelectorAll("[class*='--anim']");
 someElements.forEach(someElement => {
 	observer.observe(someElement);
@@ -39,7 +31,7 @@ someElements.forEach(someElement => {
 // --------------------------------------------------------------------------
 
 function processTextBlock(textBlock) {
-    // Зберігаємо оригінальний текст перед обробкою
+
     textBlock.setAttribute("data-original-text", textBlock.textContent);
 
     const dataChar = textBlock.dataset.char.split(',').map(Number);
@@ -78,17 +70,56 @@ function applyAnimation(span, dataChar, i) {
         }
     }
 
-// Потрібно викликати цю функцію, щоб відновити оригінальний текст
+
 function restoreOriginalText(textBlock) {
     const originalText = textBlock.getAttribute("data-original-text");
 
-    // Затримка 3 секунди перед відновленням тексту
     setTimeout(() => {
         textBlock.innerHTML = originalText;
     }, 3000);
 }
 
 document.querySelectorAll("[data-char]").forEach(processTextBlock);
-
-// Щоб відновити оригінальний текст після анімації, викликайте:
 document.querySelectorAll("[data-char]").forEach(restoreOriginalText);
+
+// -------------------------Button Up---------------------------------
+
+let buttonUp = document.querySelector('.button-up');
+let isScrolling;
+
+buttonUp.addEventListener('mouseenter', function() {
+    clearTimeout(isScrolling);
+    buttonUp.style.opacity = 1;
+    buttonUp.style.bottom = '30px';
+});
+
+buttonUp.addEventListener('mouseleave', function() {
+    isScrolling = setTimeout(function() {
+        buttonUp.style.opacity = 0;
+        buttonUp.style.bottom = '-100px';
+    }, 5000);
+});
+
+buttonUp.addEventListener('click', function() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
+
+window.addEventListener('scroll', function() {
+    if (document.body.scrollTop > 700 || document.documentElement.scrollTop > 700) {
+        buttonUp.style.opacity = 1;
+        buttonUp.style.bottom = '30px';
+    } else {
+        buttonUp.style.opacity = 0;
+        buttonUp.style.bottom = '-100px';
+    }   
+
+    clearTimeout(isScrolling);
+
+    isScrolling = setTimeout(function() {
+        buttonUp.style.opacity = 0;
+        buttonUp.style.bottom = '-100px';
+    }, 5000);
+});
