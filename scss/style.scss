@@ -144,12 +144,16 @@ body {
         position: relative;
         max-width: toRem(633);
         width: 100%;
+
+        @media (max-width: 823.98px) {
+            max-width: 100%;
+        }
     }
 
     /* .hero__span */
 
     &__span {
-        @include adaptiveValue("max-width", 590, 370, 2, 1920, 823.98);
+        @include adaptiveValue("max-width", 550, 370, 1, 1920, 823.98);
 
         span {
             display: inline-block;

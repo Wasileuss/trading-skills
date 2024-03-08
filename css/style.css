@@ -808,20 +808,20 @@ body.menu-open {
   max-width: 39.5625rem;
   width: 100%;
 }
-@media (min-width: 120em) {
-  .hero__span {
-    max-width: 36.875rem;
+@media (max-width: 823.98px) {
+  .hero__title {
+    max-width: 100%;
   }
 }
 @media (min-width: 51.49875em) and (max-width: 120em) {
-  @supports (max-width: clamp( 23.125rem , 12.7878483057rem  +  20.0726264119vw , 36.875rem )) {
+  @supports (max-width: clamp( 23.125rem , 14.6673304319rem  +  16.4230579734vw , 34.375rem )) {
     .hero__span {
-      max-width: clamp( 23.125rem , 12.7878483057rem  +  20.0726264119vw , 36.875rem );
+      max-width: clamp( 23.125rem , 14.6673304319rem  +  16.4230579734vw , 34.375rem );
     }
   }
-  @supports not (max-width: clamp( 23.125rem , 12.7878483057rem  +  20.0726264119vw , 36.875rem )) {
+  @supports not (max-width: clamp( 23.125rem , 14.6673304319rem  +  16.4230579734vw , 34.375rem )) {
     .hero__span {
-      max-width: calc(23.125rem + 13.75 * (100vw - 51.49875rem) / 68.50125);
+      max-width: calc(23.125rem + 11.25 * (100vw - 51.49875rem) / 68.50125);
     }
   }
 }
